@@ -27,9 +27,6 @@ const Dashboard = () => {
       const buyPrice = parseFloat(item.buy)
       const sellPrice = parseFloat(item.sell)
 
-      // console.log(buyPrice)
-
-      // Calculate difference percentage and savings if buy/sell prices are available
       const difference =
         buyPrice && sellPrice ? ((sellPrice - buyPrice) / buyPrice) * 100 : 0
       const savings = buyPrice && sellPrice ? Math.abs(sellPrice - buyPrice) : 0
@@ -52,23 +49,25 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+    <div className="bg-gray-900 text-white min-h-screen flex flex-col items-center px-4">
       {/* Header */}
-      <header className="w-full max-w-6xl py-4 flex items-center justify-between px-6">
-        <h1 className="text-3xl font-bold text-teal-400">HODLINFO</h1>
-        <div className="flex items-center gap-4">
-          <select className="bg-gray-800 p-2 rounded">
+      <header className="w-full max-w-6xl py-4 flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6">
+        <h1 className="text-2xl sm:text-3xl font-bold text-teal-400 mb-4 sm:mb-0">
+          HODLINFO
+        </h1>
+        <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+          <select className="bg-gray-800 p-2 rounded w-full sm:w-auto">
             <option>INR</option>
             <option>USD</option>
           </select>
-          <select className="bg-gray-800 p-2 rounded">
+          <select className="bg-gray-800 p-2 rounded w-full sm:w-auto">
             <option>BTC</option>
             <option>ETH</option>
           </select>
-          <button className="bg-teal-400 text-gray-900 px-4 py-2 rounded font-semibold">
+          <button className="bg-teal-400 text-gray-900 px-4 py-2 rounded font-semibold w-full sm:w-auto">
             BUY BTC
           </button>
-          <button className="bg-teal-500 px-4 py-2 rounded flex items-center gap-2">
+          <button className="bg-teal-500 px-4 py-2 rounded flex items-center gap-2 w-full sm:w-auto">
             <FaTelegram />
             Connect Telegram
           </button>
@@ -76,15 +75,17 @@ const Dashboard = () => {
       </header>
 
       {/* Price and Stats Section */}
-      <div className="w-full max-w-6xl text-center py-8">
-        <div className="flex justify-around text-gray-400 text-sm mb-4">
+      <div className="w-full max-w-6xl text-center py-4 sm:py-8">
+        <div className="flex justify-around text-gray-400 text-xs sm:text-sm mb-2 sm:mb-4">
           <span>0.1% 5 Mins</span>
           <span>0.96% 1 Hour</span>
           <span>2.73% 1 Day</span>
           <span>7.51% 7 Days</span>
         </div>
-        <div className="text-5xl font-bold text-white">₹ 26,56,110</div>
-        <div className="text-gray-400 mt-2">
+        <div className="text-3xl sm:text-5xl font-bold text-white">
+          ₹ 26,56,110
+        </div>
+        <div className="text-gray-400 mt-2 text-sm sm:text-base">
           Best Price to Trade
           <br />
           Average BTC/INR net price including commission
@@ -92,16 +93,16 @@ const Dashboard = () => {
       </div>
 
       {/* Table Section */}
-      <div className="w-full max-w-6xl px-6">
-        <table className="w-full bg-gray-800 rounded-lg overflow-hidden">
+      <div className="w-full max-w-6xl px-4 sm:px-6">
+        <table className="w-full bg-gray-800 rounded-lg overflow-hidden text-sm sm:text-base">
           <thead>
             <tr className="bg-gray-700 text-gray-400 text-left">
-              <th className="p-4">#</th>
-              <th className="p-4">Platform</th>
-              <th className="p-4">Last Traded Price</th>
-              <th className="p-4">Buy / Sell Price</th>
-              <th className="p-4">Difference</th>
-              <th className="p-4">Savings</th>
+              <th className="p-2 sm:p-4">#</th>
+              <th className="p-2 sm:p-4">Platform</th>
+              <th className="p-2 sm:p-4">Last Traded Price</th>
+              <th className="p-2 sm:p-4">Buy / Sell Price</th>
+              <th className="p-2 sm:p-4">Difference</th>
+              <th className="p-2 sm:p-4">Savings</th>
             </tr>
           </thead>
           <tbody>
@@ -111,14 +112,14 @@ const Dashboard = () => {
                   key={index}
                   className="border-b border-gray-700 hover:bg-gray-700"
                 >
-                  <td className="p-4">{index + 1}</td>
-                  <td className="p-4">{item.platform}</td>
-                  <td className="p-4">{item.lastPrice}</td>
-                  <td className="p-4">
+                  <td className="p-2 sm:p-4">{index + 1}</td>
+                  <td className="p-2 sm:p-4">{item.platform}</td>
+                  <td className="p-2 sm:p-4">{item.lastPrice}</td>
+                  <td className="p-2 sm:p-4">
                     {item.buyPrice} / {item.sellPrice}
                   </td>
                   <td
-                    className={`p-4 ${
+                    className={`p-2 sm:p-4 ${
                       parseFloat(item.difference) < 0
                         ? "text-red-500"
                         : "text-green-500"
@@ -126,7 +127,7 @@ const Dashboard = () => {
                   >
                     {item.difference}%
                   </td>
-                  <td className="p-4 text-green-500">{item.savings}</td>
+                  <td className="p-2 sm:p-4 text-green-500">{item.savings}</td>
                 </tr>
               ))
             ) : (
@@ -139,7 +140,7 @@ const Dashboard = () => {
           </tbody>
         </table>
         <div className="flex justify-center mt-4">
-          <button className="bg-teal-400 text-gray-900 px-4 py-2 rounded font-semibold">
+          <button className="bg-teal-400 text-gray-900 px-4 py-2 rounded font-semibold w-full sm:w-auto">
             Add hodlinfo to home screen
           </button>
         </div>
